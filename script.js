@@ -11,6 +11,7 @@ for (let divs = 0; divs < 4; divs += 1) {
 const mudaNomeSpan = document.getElementsByClassName('color');
 mudaNomeSpan[0].innerHTML = 'black';
 mudaNomeSpan[0].setAttribute('id', 'preto');
+mudaNomeSpan[0].style.backgroundColor = mudaNomeSpan[0].innerHTML;
 
 const cor1 = mudaNomeSpan[1];
 cor1.innerHTML = 'red';
@@ -24,6 +25,14 @@ const cor3 = mudaNomeSpan[3];
 cor3.innerHTML = 'blue';
 cor3.style.backgroundColor = cor3.innerHTML;
 
+const guardaCor = (corUm, corDois, corTres) => {
+  const statusCor = {
+    corUm: corUm.innerText,
+    corDois: corDois.innerText,
+    corTres: corTres.innerText,
+  };
+};
+
 const trocaCor = () => {
   const btnTroca = document.querySelector('#button-random-color');
   btnTroca.addEventListener('click', () => {
@@ -31,14 +40,16 @@ const trocaCor = () => {
     const randomColor = Math.floor(Math.random() * colors.length);
     const randomColor2 = Math.floor(Math.random() * colors.length);
     const randomColor3 = Math.floor(Math.random() * colors.length);
-    cor1.innerHTML = colors[randomColor];
-    cor1.style.backgroundColor = cor1.innerHTML;
-    cor2.innerHTML = colors[randomColor2];
-    cor2.style.backgroundColor = cor2.innerHTML;
-    cor3.innerHTML = colors[randomColor3];
-    cor3.style.backgroundColor = cor3.innerHTML;
+    cor1.innerText = colors[randomColor];
+    cor1.style.backgroundColor = cor1.innerText;
+    cor2.innerText = colors[randomColor2];
+    cor2.style.backgroundColor = cor2.innerText;
+    cor3.innerText = colors[randomColor3];
+    cor3.style.backgroundColor = cor3.innerText;
+
+    guardaCor(cor1, cor2, cor3);
+    
   });
 };
 trocaCor();
-
-localStorage.setItem('colorPalette', );
+localStorage.setItem('colorPalette', guardaCor);
