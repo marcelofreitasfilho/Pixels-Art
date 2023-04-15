@@ -9,9 +9,12 @@ for (let divs = 0; divs < 4; divs += 1) {
 }
 
 const mudaNomeSpan = document.getElementsByClassName('color');
-mudaNomeSpan[0].innerHTML = 'black';
-mudaNomeSpan[0].setAttribute('id', 'preto');
-mudaNomeSpan[0].style.backgroundColor = mudaNomeSpan[0].innerHTML;
+const preto = mudaNomeSpan[0];
+preto.innerHTML = 'black';
+preto.setAttribute('id', 'preto');
+preto.style.backgroundColor = mudaNomeSpan[0].innerHTML;
+preto.classList.add('selected');
+
 
 const cor1 = mudaNomeSpan[1];
 cor1.innerHTML = 'red';
