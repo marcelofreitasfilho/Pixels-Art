@@ -9,3 +9,10 @@
     background-color: black;
     color: white;
 } 
+
+.pixel {
+    border: 1px solid black;
+    width: 150px;
+    height: 100px;
+    display: inline-block;
+}

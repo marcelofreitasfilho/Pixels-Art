@@ -48,8 +48,18 @@ const trocaCor = () => {
     cor3.style.backgroundColor = cor3.innerText;
 
     guardaCor(cor1, cor2, cor3);
-    
   });
 };
 trocaCor();
 localStorage.setItem('colorPalette', guardaCor);
+
+const quadro = document.createElement('section');
+quadro.setAttribute('id', 'pixel-board');
+document.body.appendChild(quadro);
+
+for (let pixels = 0; pixels < 25; pixels += 1) {
+  const quadros = document.createElement('div');
+  quadro.appendChild(quadros);
+  quadros.className = 'pixel';
+  quadros.style.backgroundColor = 'white';
+}
