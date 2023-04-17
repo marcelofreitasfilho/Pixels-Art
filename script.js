@@ -1,4 +1,6 @@
 const divCor = document.querySelectorAll('.color');
+const corPreta = divCor[0];
+corPreta.style.backgroundColor = 'rgb(0, 0, 0)';
 const cor1 = divCor[1];
 const cor2 = divCor[2];
 const cor3 = divCor[3];
@@ -13,6 +15,9 @@ const geraCor = () => {
   let b = Math.floor(Math.random() * 256);
   return `rgb(${r}, ${g}, ${b})`;
 };
+cor1.style.backgroundColor = geraCor();
+cor2.style.backgroundColor = geraCor();
+cor3.style.backgroundColor = geraCor();
 
 btnCor.addEventListener('click', () => {
   cor1.style.backgroundColor = geraCor();
@@ -28,6 +33,10 @@ const devolveCor = () => {
   for (let c = 0; c < coresGeradas.length; c += 1) {
     if (coresGuardadas) {
       coresGeradas[c].style.backgroundColor = coresGuardadas[c];
+    } else {
+      cor1.style.backgroundColor = geraCor();
+      cor2.style.backgroundColor = geraCor();
+      cor3.style.backgroundColor = geraCor();
     }
   }
 };
@@ -44,8 +53,8 @@ for (let pixels = 0; pixels < 25; pixels += 1) {
   const quadros = document.createElement('div');
   quadro.appendChild(quadros);
   quadros.className = 'pixel';
-  quadros.style.backgroundColor = 'white';
-  }
+  quadros.style.backgroundColor = 'rgb(255, 255, 255)';
+}
 
 window.addEventListener('load', () => {
   const selecionaCor = (event) => {
@@ -60,14 +69,14 @@ window.addEventListener('load', () => {
   }
 });
 
-const pintP = (event) => {
+const pintaP = (event) => {
   const selected = document.querySelector('.color.selected');
-  if(selected) {
+  if (selected) {
     event.target.style.backgroundColor = selected.style.backgroundColor;
   }
 };
 for (let p = 0; p < pBoard.length; p += 1) {
-  pBoard[p].addEventListener('click', pintP);
+  pBoard[p].addEventListener('click', pintaP);
 }
 
 btnPixel.addEventListener('click', () => {
