@@ -1,52 +1,45 @@
-const div = document.createElement('div');
-div.id = 'color-palette';
-document.body.appendChild(div);
+const divCor = document.querySelectorAll('.color');
+const cor1 = divCor[1];
+const cor2 = divCor[2];
+const cor3 = divCor[3];
 
-for (let divs = 0; divs < 4; divs += 1) {
-  const cores = document.createElement('span');
-  const colorss = [('yellow'), ('blue'), ('red'), ('green'), ('pink'), ('purple')];
-  const randomColors = Math.floor(Math.random() * colorss.length);
-  div.appendChild(cores);
-  cores.className = 'color';
-  cores.innerHTML = colorss[randomColors];
-  cores.style.backgroundColor = cores.innerHTML;
+const btnCor = document.querySelector('#button-random-color');
+
+const geraCor = () => {
+  let r = Math.floor(Math.random() * 256);
+  let g = Math.floor(Math.random() * 256);
+  let b = Math.floor(Math.random() * 256);
+  return `rgb(${r}, ${g}, ${b})`;
+};
+
+btnCor.addEventListener('click', () => {
+  cor1.style.backgroundColor = geraCor();
+  cor2.style.backgroundColor = geraCor();
+  cor3.style.backgroundColor = geraCor();
+});
+
+const armazenaCor = localStorage.setItem('colorPalette', JSON.stringify(divCor));
+
+const quadro = document.createElement('section');
+quadro.setAttribute('id', 'pixel-board');
+document.body.appendChild(quadro);
+
+for (let pixels = 0; pixels < 25; pixels += 1) {
+  const quadros = document.createElement('div');
+  quadro.appendChild(quadros);
+  quadros.className = 'pixel';
+  quadros.style.backgroundColor = 'white';
 }
 
-const mudaNomeSpan = document.getElementsByClassName('color');
-mudaNomeSpan[0].innerHTML = 'black';
-mudaNomeSpan[0].setAttribute('id', 'preto');
-mudaNomeSpan[0].style.backgroundColor = mudaNomeSpan[0].innerHTML;
-
-const cor1 = mudaNomeSpan[1];
-
-const cor2 = mudaNomeSpan[2];
-
-const cor3 = mudaNomeSpan[3];
-
-const guardaCor = (corUm, corDois, corTres) => {
-  const statusCor = {
-    corUm: corUm.innerText,
-    corDois: corDois.innerText,
-    corTres: corTres.innerText,
+window.addEventListener('load', () => {
+  const selecionaCor = (event) => {
+    const selecionado = document.querySelectorAll('.selected');
+    for (let cor of selecionado) {
+      cor.classList.remove('selected');
+    }
+    event.target.classList.add('selected');
   };
-  localStorage.setItem('colorPalette', JSON.stringify(statusCor));
-};
-
-const trocaCor = () => {
-  const btnTroca = document.querySelector('#button-random-color');
-  btnTroca.addEventListener('click', () => {
-    const colors = [('yellow'), ('blue'), ('red'), ('green'), ('pink'), ('purple')];
-    const randomColor = Math.floor(Math.random() * colors.length);
-    const randomColor2 = Math.floor(Math.random() * colors.length);
-    const randomColor3 = Math.floor(Math.random() * colors.length);
-    cor1.innerText = colors[randomColor];
-    cor1.style.backgroundColor = cor1.innerText;
-    cor2.innerText = colors[randomColor2];
-    cor2.style.backgroundColor = cor2.innerText;
-    cor3.innerText = colors[randomColor3];
-    cor3.style.backgroundColor = cor3.innerText;
-
-    guardaCor(cor1, cor2, cor3);
-  });
-};
-trocaCor();
+  for (let c = 0; c < divCor.length; c += 1) {
+    divCor[c].addEventListener('click', selecionaCor);
+  }
+});

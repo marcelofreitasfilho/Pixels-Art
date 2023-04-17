@@ -1,24 +1,20 @@
-.color {
+.color{
     border: 1px solid black;
     display: inline-block;
     width: 100px;
     height: 80px;
 }
 
-
- #preto {
+#preto {
     background-color: black;
-} 
-
+}
 #cor1{
     background-color: red;
 }
-
-#cor2{
+#cor2 {
     background-color: yellow;
 }
-
-#cor3{
+#cor3 {
     background-color: blue;
 }
 
@@ -31,8 +27,4 @@
     width: 40px;
     height: 40px;
     display: inline-block;
-}
-
-.selected {
-    border: 10px solid pink;
 }
