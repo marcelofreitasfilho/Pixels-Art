@@ -2,8 +2,10 @@ const divCor = document.querySelectorAll('.color');
 const cor1 = divCor[1];
 const cor2 = divCor[2];
 const cor3 = divCor[3];
-
+const coresGeradas = document.querySelectorAll('.color:not(#preto)');
 const btnCor = document.querySelector('#button-random-color');
+const pBoard = document.querySelectorAll('.pixel');
+const btnPixel = document.querySelector('#clear-board');
 
 const geraCor = () => {
   let r = Math.floor(Math.random() * 256);
@@ -16,9 +18,23 @@ btnCor.addEventListener('click', () => {
   cor1.style.backgroundColor = geraCor();
   cor2.style.backgroundColor = geraCor();
   cor3.style.backgroundColor = geraCor();
+  const coresP = [cor1.style.backgroundColor, cor2.style.backgroundColor,
+    cor3.style.backgroundColor];
+  localStorage.setItem('colorPalette', JSON.stringify(coresP));
 });
 
-const armazenaCor = localStorage.setItem('colorPalette', JSON.stringify(divCor));
+const devolveCor = () => {
+  const coresGuardadas = JSON.parse(localStorage.getItem('colorPalette'));
+  for (let c = 0; c < coresGeradas.length; c += 1) {
+    if (coresGuardadas) {
+      coresGeradas[c].style.backgroundColor = coresGuardadas[c];
+    }
+  }
+};
+
+if (localStorage.getItem('colorPalette')) {
+  devolveCor();
+}
 
 const quadro = document.createElement('section');
 quadro.setAttribute('id', 'pixel-board');
