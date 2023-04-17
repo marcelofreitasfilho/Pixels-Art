@@ -4,7 +4,7 @@ const cor2 = divCor[2];
 const cor3 = divCor[3];
 const coresGeradas = document.querySelectorAll('.color:not(#preto)');
 const btnCor = document.querySelector('#button-random-color');
-const pBoard = document.querySelectorAll('.pixel');
+const pBoard = document.getElementsByClassName('pixel');
 const btnPixel = document.querySelector('#clear-board');
 
 const geraCor = () => {
@@ -45,7 +45,7 @@ for (let pixels = 0; pixels < 25; pixels += 1) {
   quadro.appendChild(quadros);
   quadros.className = 'pixel';
   quadros.style.backgroundColor = 'white';
-}
+  }
 
 window.addEventListener('load', () => {
   const selecionaCor = (event) => {
@@ -57,5 +57,21 @@ window.addEventListener('load', () => {
   };
   for (let c = 0; c < divCor.length; c += 1) {
     divCor[c].addEventListener('click', selecionaCor);
+  }
+});
+
+const pintP = (event) => {
+  const selected = document.querySelector('.color.selected');
+  if(selected) {
+    event.target.style.backgroundColor = selected.style.backgroundColor;
+  }
+};
+for (let p = 0; p < pBoard.length; p += 1) {
+  pBoard[p].addEventListener('click', pintP);
+}
+
+btnPixel.addEventListener('click', () => {
+  for (let p = 0; p < pBoard.length; p += 1) {
+    pBoard[p].style.backgroundColor = 'white';
   }
 });
